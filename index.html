@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plotline — UK Smart-City Investment Platform</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22%23F4F1EA%22/%3E%3Cg%20fill%3D%22none%22%20stroke-width%3D%2216%22%20transform%3D%22rotate%28-90%2050%2050%29%22%3E%20%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2230%22%20pathLength%3D%22360%22%20stroke%3D%22%23E9A23B%22%20stroke-dasharray%3D%2262%20360%22%20stroke-dashoffset%3D%22-294%22%20/%3E%20%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2230%22%20pathLength%3D%22360%22%20stroke%3D%22%230F1B2D%22%20stroke-dasharray%3D%2238%20360%22%20stroke-dashoffset%3D%22-4%22%20/%3E%20%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2230%22%20pathLength%3D%22360%22%20stroke%3D%22%230F1B2D%22%20stroke-dasharray%3D%2220%20360%22%20stroke-dashoffset%3D%22-50%22%20/%3E%20%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2230%22%20pathLength%3D%22360%22%20stroke%3D%22%230F1B2D%22%20stroke-dasharray%3D%2272%20360%22%20stroke-dashoffset%3D%22-76%22%20/%3E%20%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2230%22%20pathLength%3D%22360%22%20stroke%3D%22%230F1B2D%22%20stroke-dasharray%3D%2258%20360%22%20stroke-dashoffset%3D%22-154%22%20/%3E%20%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2230%22%20pathLength%3D%22360%22%20stroke%3D%22%230F1B2D%22%20stroke-dasharray%3D%2256%20360%22%20stroke-dashoffset%3D%22-232%22%20/%3E%20%3C/g%3E%20%3Cpolyline%20points%3D%2216%2C76%2045%2C47%2050%2C52%2080%2C22%22%20fill%3D%22none%22%20stroke%3D%22%23F4F1EA%22%20stroke-width%3D%2210%22%20stroke-linejoin%3D%22miter%22%20/%3E%20%3Cpolyline%20points%3D%2216%2C76%2045%2C47%2050%2C52%2080%2C22%22%20fill%3D%22none%22%20stroke%3D%22%230F1B2D%22%20stroke-width%3D%223.5%22%20stroke-linejoin%3D%22miter%22%20/%3E%3C/svg%3E" />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Chart.js for Responsive Graphics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Font Setup (DM Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0F1B2D',
+            navyDark: '#0B1422',
+            cream: '#F4F1EA',
+            creamCard: '#FFFFFF',
+            amber: '#E9A23B',
+            teal: '#4BB3A5',
+            tealDark: '#1F6F66',
+            slateCustom: '#4A5568',
+            passBg: '#DCEFEC',
+            passTxt: '#14524B',
+            failBg: '#FBE3D6',
+            failTxt: '#8A2E12',
+            warnBg: '#FBEBCD',
+            warnTxt: '#6E4508',
+            moveBg: '#E6ECF5',
+            moveTxt: '#1E3A66'
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #F4F1EA;
+      color: #0F1B2D;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 27, 45, 0.05);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(15, 27, 45, 0.2);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(15, 27, 45, 0.4);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-amber selection:text-navy">
+  <!-- Plotline logo mark -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true">
+    <symbol id="plotline-mark" viewBox="0 0 100 100">
+      <g fill="none" stroke-width="16" transform="rotate(-90 50 50)">
+        <circle cx="50" cy="50" r="30" pathLength="360" stroke="#E9A23B" stroke-dasharray="62 360" stroke-dashoffset="-294" />
+        <circle cx="50" cy="50" r="30" pathLength="360" stroke="#0F1B2D" stroke-dasharray="38 360" stroke-dashoffset="-4" />
+        <circle cx="50" cy="50" r="30" pathLength="360" stroke="#0F1B2D" stroke-dasharray="20 360" stroke-dashoffset="-50" />
+        <circle cx="50" cy="50" r="30" pathLength="360" stroke="#0F1B2D" stroke-dasharray="72 360" stroke-dashoffset="-76" />
+        <circle cx="50" cy="50" r="30" pathLength="360" stroke="#0F1B2D" stroke-dasharray="58 360" stroke-dashoffset="-154" />
+        <circle cx="50" cy="50" r="30" pathLength="360" stroke="#0F1B2D" stroke-dasharray="56 360" stroke-dashoffset="-232" />
+      </g>
+      <polyline points="16,76 45,47 50,52 80,22" fill="none" stroke="#F4F1EA" stroke-width="10" stroke-linejoin="miter" />
+      <polyline points="16,76 45,47 50,52 80,22" fill="none" stroke="#0F1B2D" stroke-width="3.5" stroke-linejoin="miter" />
+    </symbol>
+  </svg>
+
+  <!-- Header / Navigation Bar -->
+  <header class="sticky top-4 z-40 max-w-7xl mx-auto w-full px-4 sm:px-6">
+    <nav class="bg-navy rounded-full py-3 px-6 shadow-xl flex items-center justify-between gap-4 border border-white/10">
+      <div class="flex items-center gap-3">
+        <!-- Logo SVG -->
+        <div class="w-9 h-9 rounded-full bg-cream flex items-center justify-center p-0.5">
+          <svg class="w-full h-full" role="img" aria-label="Plotline logo"><use href="#plotline-mark" /></svg>
+        </div>
+        <span class="text-cream font-bold text-xl tracking-tight">Plotline</span>
+      </div>
+
+      <!-- Links -->
+      <div class="hidden md:flex items-center gap-1 lg:gap-2">
+        <a href="#problem" class="text-cream/80 hover:text-cream text-sm font-medium px-3 py-1.5 rounded-full hover:bg-white/10 transition">Problem</a>
+        <a href="#client" class="text-cream/80 hover:text-cream text-sm font-medium px-3 py-1.5 rounded-full hover:bg-white/10 transition">Client</a>
+        <a href="#services" class="text-cream/80 hover:text-cream text-sm font-medium px-3 py-1.5 rounded-full hover:bg-white/10 transition">Services</a>
+        <a href="#demo" class="text-cream/80 hover:text-cream text-sm font-medium px-3 py-1.5 rounded-full hover:bg-white/10 transition">Interactive Demo</a>
+        <a href="#data" class="text-cream/80 hover:text-cream text-sm font-medium px-3 py-1.5 rounded-full hover:bg-white/10 transition">Data</a>
+        <a href="#faq" class="text-cream/80 hover:text-cream text-sm font-medium px-3 py-1.5 rounded-full hover:bg-white/10 transition">FAQ</a>
+      </div>
+
+      <!-- CTA -->
+      <a href="#demo" class="bg-amber text-navy font-bold text-sm px-5 py-2 rounded-full hover:bg-amber/90 transition shadow-md flex items-center gap-2">
+        <span>Run Demo</span>
+        <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+      </a>
+    </nav>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 space-y-16">
+
+    <!-- Hero Section -->
+    <section class="bg-navy rounded-3xl p-6 sm:p-10 lg:p-12 text-cream shadow-2xl relative overflow-hidden border border-white/5">
+      <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-teal/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-20 -top-20 w-96 h-96 bg-amber/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+        <!-- Left Banner Details -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber/10 border border-amber/20 text-amber text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>Educational Hackathon Project · UK Smart-City Value Chain</span>
+          </div>
+
+          <h1 class="text-5xl sm:text-7xl font-bold tracking-tight text-cream leading-tight">
+            $100,000.
+          </h1>
+
+          <p class="text-2xl sm:text-3xl font-medium text-cream/90 leading-snug">
+            Where should capital flow across the UK smart-city value chain, and why?
+          </p>
+
+          <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+            An AI engine that synthesizes live price movements, news sentiment, and macro data into an optimized, rule-checked portfolio split for high-growth tech investors — giving transparent reasoning for every slice.
+          </p>
+
+          <div class="pt-2 flex flex-wrap gap-4 items-center">
+            <a href="#demo" class="bg-amber text-navy font-bold px-6 py-3.5 rounded-full hover:bg-amber/90 transition shadow-lg flex items-center gap-2 text-base">
+              <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+              <span>Interactive Dashboard</span>
+            </a>
+            <a href="#how-it-works" class="border border-cream/30 text-cream font-medium px-6 py-3.5 rounded-full hover:bg-white/10 transition text-base">
+              Architecture & Rules
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Hero Interactive Chart Card -->
+        <div class="lg:col-span-5">
+          <div class="bg-white rounded-2xl p-6 text-navy shadow-xl border border-slate-100 flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Recommended Allocation Split</span>
+              <span class="badge bg-amber/20 text-amber-900 border border-amber/30">Live Simulation</span>
+            </div>
+
+            <!-- Hero Chart Canvas Wrapper -->
+            <div class="relative w-full aspect-square max-h-[260px] mx-auto flex items-center justify-center my-2">
+              <canvas id="heroChart"></canvas>
+              <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
+                <span class="text-2xl font-bold text-navy">$100,000</span>
+                <span class="text-xs text-slateCustom font-medium">7 Layers + 1 Raise</span>
+              </div>
+            </div>
+
+            <!-- Quick Legend Preview -->
+            <div id="heroLegend" class="mt-2 divide-y divide-slate-100 text-xs font-medium max-h-[160px] overflow-y-auto custom-scrollbar">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/10">
+        <div class="bg-navyDark/60 p-4 rounded-xl border border-white/5">
+          <div class="text-3xl font-bold text-amber">$100,000</div>
+          <div class="text-xs text-slate-300 font-medium">Portfolio Pot Size</div>
+        </div>
+        <div class="bg-navyDark/60 p-4 rounded-xl border border-white/5">
+          <div class="text-3xl font-bold text-teal">7 Layers</div>
+          <div class="text-xs text-slate-300 font-medium">Value Chain Scope</div>
+        </div>
+        <div class="bg-navyDark/60 p-4 rounded-xl border border-white/5">
+          <div class="text-3xl font-bold text-cream">4 Sources</div>
+          <div class="text-xs text-slate-300 font-medium">Live Market Data Inputs</div>
+        </div>
+        <div class="bg-navyDark/60 p-4 rounded-xl border border-white/5">
+          <div class="text-3xl font-bold text-amber">3 Scenarios</div>
+          <div class="text-xs text-slate-300 font-medium">Stress Test Conditions</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="space-y-6 scroll-mt-24">
+      <div>
+        <div class="text-tealDark font-bold text-xs uppercase tracking-widest">The Challenge</div>
+        <h2 class="text-3xl sm:text-4xl font-bold text-navy">Smart-city investing is opaque and hype-driven.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <span class="text-3xl font-bold text-amber/40">01</span>
+            <h3 class="text-xl font-bold text-navy mt-2">Scattered Data</h3>
+            <p class="text-slateCustom text-sm mt-2 leading-relaxed">
+              Public market prices, local news sentiment, and macro indicators live in isolated silos across incompatible formats.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-500 font-medium">
+            <i data-lucide="layers" class="w-4 h-4 text-teal"></i>
+            <span>Requires unified ingestion</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <span class="text-3xl font-bold text-amber/40">02</span>
+            <h3 class="text-xl font-bold text-navy mt-2">Unanchored Hype</h3>
+            <p class="text-slateCustom text-sm mt-2 leading-relaxed">
+              Narratives around smart cities often run far ahead of real financial metrics, leading to mispriced capital allocations.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-500 font-medium">
+            <i data-lucide="trending-down" class="w-4 h-4 text-amber"></i>
+            <span>Requires metric verification</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <span class="text-3xl font-bold text-amber/40">03</span>
+            <h3 class="text-xl font-bold text-navy mt-2">Black-Box Splits</h3>
+            <p class="text-slateCustom text-sm mt-2 leading-relaxed">
+              Robo-advisors present asset splits without disclosing explicit risk parameters or exit conditions.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-500 font-medium">
+            <i data-lucide="shield-alert" class="w-4 h-4 text-navy"></i>
+            <span>Requires full auditability</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Client and Mandate Section -->
+    <section id="client" class="space-y-6 scroll-mt-24">
+      <div>
+        <div class="text-tealDark font-bold text-xs uppercase tracking-widest">Mandate Governance</div>
+        <h2 class="text-3xl sm:text-4xl font-bold text-navy">Target Client Profile & Rules</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Persona Overview Card -->
+        <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+            <div>
+              <span class="text-xs font-bold text-slateCustom uppercase tracking-wider">Client Persona</span>
+              <h3 class="text-2xl font-bold text-navy">High-Growth Start-up Investor</h3>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-teal/10 flex items-center justify-center text-tealDark">
+              <i data-lucide="user-check" class="w-6 h-6"></i>
+            </div>
+          </div>
+
+          <p class="text-slateCustom text-sm leading-relaxed">
+            Seeks direct growth exposure to listed companies and private ventures building future urban infrastructure in the UK. Tolerates equity volatility in pursuit of high capital gains.
+          </p>
+
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between py-2 border-b border-slate-100">
+              <span class="font-medium text-slateCustom">Investment Pot</span>
+              <span class="font-bold text-navy">$100,000 USD</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-slate-100">
+              <span class="font-medium text-slateCustom">Investment Horizon</span>
+              <span class="font-bold text-navy">5 - 7 Years</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-slate-100">
+              <span class="font-medium text-slateCustom">Special Allocation</span>
+              <span class="font-bold text-navy">Private Architecture Raise</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span class="font-medium text-slateCustom">Max Cash Buffer</span>
+              <span class="font-bold text-navy">20% Limit</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Mandate Rule Engine Cards -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-navy text-lg flex items-center gap-2">
+              <i data-lucide="sliders" class="w-5 h-5 text-tealDark"></i>
+              <span>Active Rule Checks</span>
+            </h3>
+            <span id="mandateScenarioBadge" class="badge bg-navy text-cream">Base Case</span>
+          </div>
+
+          <div id="mandateChipsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Dynamic checks injected by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Architecture Section -->
+
+
+    <!-- Services Grid Section -->
+    <section id="services" class="space-y-6 scroll-mt-24">
+      <div>
+        <div class="text-tealDark font-bold text-xs uppercase tracking-widest">Capabilities</div>
+        <h2 class="text-3xl sm:text-4xl font-bold text-navy">Platform Feature Set</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+          <i data-lucide="pie-chart" class="w-8 h-8 text-amber mb-3"></i>
+          <div>
+            <h3 class="font-bold text-navy text-lg">Portfolio Builder</h3>
+            <p class="text-xs text-slateCustom mt-1">Automated $100k allocation optimization across 7 value chain layers.</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+          <i data-lucide="check-square" class="w-8 h-8 text-teal mb-3"></i>
+          <div>
+            <h3 class="font-bold text-navy text-lg">Mandate Engine</h3>
+            <p class="text-xs text-slateCustom mt-1">Real-time compliance validation against custom client risk parameters.</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+          <i data-lucide="activity" class="w-8 h-8 text-navy mb-3"></i>
+          <div>
+            <h3 class="font-bold text-navy text-lg">Stress Testing</h3>
+            <p class="text-xs text-slateCustom mt-1">Instant portfolio re-weighting under macro interest rate and budget shocks.</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+          <i data-lucide="building" class="w-8 h-8 text-amber mb-3"></i>
+          <div>
+            <h3 class="font-bold text-navy text-lg">Private Venture Score</h3>
+            <p class="text-xs text-slateCustom mt-1">Qualitative rating (Go / Partial / No-go) for illiquid architectural raises.</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+          <i data-lucide="file-text" class="w-8 h-8 text-teal mb-3"></i>
+          <div>
+            <h3 class="font-bold text-navy text-lg">Transparent Thesis</h3>
+            <p class="text-xs text-slateCustom mt-1">Full data provenance, key risk metrics, and exit triggers for every asset.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE DEMO INTERACTIVE SECTION -->
+    <section id="demo" class="space-y-8 scroll-mt-24 pt-4 border-t border-slate-200">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="text-tealDark font-bold text-xs uppercase tracking-widest flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Interactive Simulator</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-bold text-navy">Live Portfolio Demo</h2>
+        </div>
+        <div class="text-xs text-slateCustom bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm flex items-center gap-2">
+          <i data-lucide="database" class="w-4 h-4 text-teal"></i>
+          <span>Data Snapshot: <strong id="dataAsOfLabel">October 2026 Live Cache</strong></span>
+        </div>
+      </div>
+
+      <!-- Top Metric Overview Banner -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center">
+          <div>
+            <span class="text-xs text-slateCustom font-bold uppercase tracking-wider">Mandate Status</span>
+            <div id="metricMandatePass" class="text-2xl font-bold text-emerald-700 mt-1">5 of 5 Passed</div>
+            <span id="metricMandateSub" class="text-xs text-slate-500 font-medium">100% Compliant</span>
+          </div>
+          <div id="metricMandateIcon" class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700">
+            <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center">
+          <div>
+            <span class="text-xs text-slateCustom font-bold uppercase tracking-wider">Weighted Volatility</span>
+            <div id="metricVol" class="text-2xl font-bold text-navy mt-1">26.4%</div>
+            <span class="text-xs text-slate-500 font-medium">High Risk Tolerance Target</span>
+          </div>
+          <div class="w-10 h-10 rounded-full bg-amber/10 flex items-center justify-center text-amber">
+            <i data-lucide="trending-up" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center">
+          <div>
+            <span class="text-xs text-slateCustom font-bold uppercase tracking-wider">Concentration Level</span>
+            <div id="metricConcentration" class="text-2xl font-bold text-navy mt-1">Balanced</div>
+            <span id="metricConcentrationSub" class="text-xs text-slate-500 font-medium">Top 3 = 44%</span>
+          </div>
+          <div class="w-10 h-10 rounded-full bg-teal/10 flex items-center justify-center text-tealDark">
+            <i data-lucide="pie-chart" class="w-6 h-6"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scenario Selector Tabs -->
+      <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slateCustom uppercase tracking-wider">Select Stress Scenario</span>
+          <span class="text-xs text-slate-400">Click tab to test allocation response</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="scenarioTabs">
+          <!-- Buttons dynamically injected -->
+        </div>
+        <div id="scenarioDescription" class="text-xs text-slateCustom bg-cream p-3 rounded-xl border border-slate-200/60 leading-relaxed font-medium">
+          <!-- Description text -->
+        </div>
+      </div>
+
+      <!-- Dashboard Grid: Controls (Left), Interactive Donut (Center), Holdings List (Right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Controls Column -->
+        <div class="lg:col-span-3 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+          <h3 class="font-bold text-navy text-base flex items-center gap-2 border-b border-slate-100 pb-3">
+            <i data-lucide="sliders" class="w-4 h-4 text-teal"></i>
+            <span>Mandate Parameters</span>
+          </h3>
+
+          <!-- Slider 1: Cap -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="capSlider" class="font-bold text-navy">Max Cap Per Holding</label>
+              <span id="capValueText" class="font-extrabold text-amber text-sm">15%</span>
+            </div>
+            <input type="range" id="capSlider" min="5" max="25" step="1" value="15" class="w-full accent-amber cursor-pointer" />
+            <p class="text-[11px] text-slate-500 leading-tight">Caps the maximum exposure to any single company or asset slot.</p>
+          </div>
+
+          <!-- Slider 2: Minimum Layers Covered -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="layersSlider" class="font-bold text-navy">Min Smart Layers Covered</label>
+              <span id="layersValueText" class="font-extrabold text-tealDark text-sm">4 of 7</span>
+            </div>
+            <input type="range" id="layersSlider" min="1" max="7" step="1" value="4" class="w-full accent-teal cursor-pointer" />
+            <p class="text-[11px] text-slate-500 leading-tight">Requires broad diversification across smart city layers.</p>
+          </div>
+
+          <!-- Private Venture Architecture Score Selector -->
+          <div class="space-y-2 pt-2 border-t border-slate-100">
+            <label class="text-xs font-bold text-navy block">Private Architecture Score</label>
+            <div class="grid grid-cols-3 gap-1 bg-cream p-1 rounded-xl text-xs font-bold" id="archScoreGroup">
+              <button data-score="Go" class="py-1.5 rounded-lg text-center transition bg-emerald-600 text-white shadow-sm">Go</button>
+              <button data-score="Partial" class="py-1.5 rounded-lg text-center text-slateCustom hover:bg-white/50 transition">Partial</button>
+              <button data-score="No-go" class="py-1.5 rounded-lg text-center text-slateCustom hover:bg-white/50 transition">No-go</button>
+            </div>
+            <p class="text-[11px] text-slate-500 leading-tight">Scoring 'No-go' drops private equity to $0 and reallocates buffer.</p>
+          </div>
+
+          <!-- Reset Button -->
+          <button id="resetParamsBtn" class="w-full py-2 bg-cream hover:bg-slate-200/70 text-navy font-bold text-xs rounded-xl transition flex items-center justify-center gap-2 border border-slate-200">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            <span>Reset Default Mandate</span>
+          </button>
+        </div>
+
+        <!-- Center Chart Column -->
+        <div class="lg:col-span-4 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-between min-h-[420px]">
+          <div class="w-full flex justify-between items-center">
+            <span class="text-xs font-bold text-slateCustom uppercase tracking-wider">Asset Breakdown</span>
+            <span class="text-[11px] text-slate-400">Click slice to inspect thesis</span>
+          </div>
+
+          <!-- Donut Container -->
+          <div class="relative w-full aspect-square max-h-[290px] my-auto flex items-center justify-center">
+            <canvas id="demoChart"></canvas>
+            <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center p-2">
+              <span id="donutCenterVal" class="text-3xl font-extrabold text-navy tracking-tight">$100,000</span>
+              <span id="donutCenterSub" class="text-xs font-bold text-slateCustom mt-0.5">Total Portfolio</span>
+            </div>
+          </div>
+
+          <div class="w-full text-center text-xs text-slate-500 italic pt-2 border-t border-slate-100">
+            Interactive chart updates instantly on parameter shift.
+          </div>
+        </div>
+
+        <!-- Right Holdings Table Column -->
+        <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-navy text-base flex items-center gap-2">
+              <i data-lucide="list font-bold" class="w-4 h-4 text-amber"></i>
+              <span>Allocated Holdings</span>
+            </h3>
+            <span class="text-xs text-slate-500" id="holdingsCountLabel">8 Holdings</span>
+          </div>
+
+          <!-- Search & Filter Bar -->
+          <div class="relative">
+            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2.5 text-slate-400"></i>
+            <input type="text" id="holdingSearch" placeholder="Filter holding by name or ticker..." class="w-full bg-cream rounded-xl pl-9 pr-4 py-2 text-xs border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber/50 font-medium text-navy" />
+          </div>
+
+          <!-- Holdings Rows list -->
+          <div id="holdingsList" class="space-y-1.5 max-h-[320px] overflow-y-auto pr-1 custom-scrollbar">
+            <!-- Dynamic Rows -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Selected Holding Details Panel (Expandable Modal or Banner) -->
+      <div id="holdingDetailCard" class="hidden bg-white p-6 rounded-2xl border-l-8 border-amber shadow-lg space-y-4 transition-all">
+        <div class="flex justify-between items-start">
+          <div>
+            <div id="detailLayer" class="text-xs font-bold text-slateCustom uppercase tracking-wider">Layer Category</div>
+            <h3 id="detailTitle" class="text-2xl font-bold text-navy">Asset Title</h3>
+          </div>
+          <button id="closeDetailBtn" class="text-slate-400 hover:text-navy p-1 rounded-lg hover:bg-slate-100 transition">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="flex flex-wrap gap-4 text-xs font-semibold text-slateCustom bg-cream p-3 rounded-xl border border-slate-200">
+          <div>Allocation: <span id="detailAllocVal" class="text-navy font-bold">$15,000 (15%)</span></div>
+          <div>Confidence: <span id="detailConfidence" class="text-emerald-700 font-bold">High</span></div>
+          <div>90d Volatility: <span id="detailVol" class="text-navy font-bold">28.4%</span></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="space-y-1">
+            <span class="font-bold uppercase tracking-wider text-slateCustom">Data Point Provenance</span>
+            <p id="detailDataPoint" class="text-slate-700 leading-relaxed bg-slate-50 p-2.5 rounded-lg border border-slate-100 font-mono">...</p>
+          </div>
+
+          <div class="space-y-1">
+            <span class="font-bold uppercase tracking-wider text-slateCustom">Mandate Rule Satisfied</span>
+            <p id="detailRule" class="text-slate-700 leading-relaxed bg-slate-50 p-2.5 rounded-lg border border-slate-100">...</p>
+          </div>
+
+          <div class="space-y-1">
+            <span class="font-bold uppercase tracking-wider text-slateCustom">Key Downside Risk</span>
+            <p id="detailRisk" class="text-slate-700 leading-relaxed bg-slate-50 p-2.5 rounded-lg border border-slate-100">...</p>
+          </div>
+
+          <div class="space-y-1">
+            <span class="font-bold uppercase tracking-wider text-slateCustom">Exit Trigger ("Change My Mind")</span>
+            <p id="detailTrigger" class="text-slate-700 leading-relaxed bg-slate-50 p-2.5 rounded-lg border border-slate-100">...</p>
+          </div>
+        </div>
+
+        <div id="detailScenarioNoteWrapper" class="text-xs pt-2 border-t border-slate-100 text-slateCustom font-medium">
+          <strong>Scenario Shift Note:</strong> <span id="detailScenarioNote">...</span>
+        </div>
+      </div>
+
+      <!-- Scenario Differences / Movement Summary -->
+      <div id="scenarioMovesBox" class="bg-navy p-6 rounded-2xl text-cream shadow-md space-y-3">
+        <h3 class="font-bold text-amber text-lg flex items-center gap-2">
+          <i data-lucide="arrow-right-left" class="w-5 h-5"></i>
+          <span id="movesTitle">Scenario Capital Adjustments</span>
+        </h3>
+        <div id="movesContent" class="space-y-2 text-xs text-slate-300">
+          <!-- Dynamic movements text -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Provenance Section -->
+    <section id="data" class="space-y-6 scroll-mt-24">
+      <div>
+        <div class="text-tealDark font-bold text-xs uppercase tracking-widest">Transparency</div>
+        <h2 class="text-3xl sm:text-4xl font-bold text-navy">Public Market Data Sources</h2>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slateCustom">
+            <thead class="bg-navy text-cream font-bold uppercase tracking-wider">
+              <tr>
+                <th class="p-4">Source API</th>
+                <th class="p-4">Role in Value Chain</th>
+                <th class="p-4">Selection Rationale</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50">
+                <td class="p-4 font-bold text-navy flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-amber"></span>
+                  yfinance
+                </td>
+                <td class="p-4">Daily closes, 12m returns, 90d volatility</td>
+                <td class="p-4">Free Python wrapper for London Stock Exchange tickers (.L extensions).</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-4 font-bold text-navy flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-teal"></span>
+                  Finnhub API
+                </td>
+                <td class="p-4">Corporate news sentiment & headlines</td>
+                <td class="p-4">Free tier endpoint providing recent company announcements for context.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-4 font-bold text-navy flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-navy"></span>
+                  FRED (St. Louis Fed)
+                </td>
+                <td class="p-4">Macro indicators (Interest Rates, Inflation)</td>
+                <td class="p-4">Clean time series used to calibrate rate shock scenarios.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-4 font-bold text-navy flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-amber"></span>
+                  World Bank Open Data
+                </td>
+                <td class="p-4">UK GDP & Urbanization Growth</td>
+                <td class="p-4">Macro context for long-term UK smart-city development timelines.</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="p-4 font-bold text-navy flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-slateCustom"></span>
+                  SEC EDGAR (Stretch)
+                </td>
+                <td class="p-4">Corporate filing metadata</td>
+                <td class="p-4">Peer analysis for global listings with UK operations.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Execution Log Accordion -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
+        <button id="toggleRunLogBtn" class="w-full flex items-center justify-between font-bold text-navy text-sm">
+          <span class="flex items-center gap-2">
+            <i data-lucide="terminal" class="w-4 h-4 text-teal"></i>
+            <span>System Run Log (Recent Automated Analysis Pipeline Runs)</span>
+          </span>
+          <i data-lucide="chevron-down" id="logChevron" class="w-4 h-4 transition-transform"></i>
+        </button>
+
+        <div id="runLogContainer" class="hidden pt-3 border-t border-slate-100 text-xs font-mono text-slate-600 space-y-2">
+          <div class="bg-navyDark p-3 rounded-xl text-slate-300">
+            <span class="text-amber">2026-10-23 14:10 UTC</span> · Data as of 2026-10-23 · Sources: yfinance, Finnhub, FRED · Mandate: Cap 15%, Min Layers 4
+          </div>
+          <div class="bg-navyDark p-3 rounded-xl text-slate-300">
+            <span class="text-amber">2026-10-22 09:45 UTC</span> · Data as of 2026-10-22 · Sources: yfinance, FRED · Mandate: Cap 15%, Min Layers 4
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FAQ Section -->
+    <section id="faq" class="space-y-6 scroll-mt-24">
+      <div>
+        <div class="text-tealDark font-bold text-xs uppercase tracking-widest">Questions</div>
+        <h2 class="text-3xl sm:text-4xl font-bold text-navy">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="space-y-4 max-w-4xl">
+        <details class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 group">
+          <summary class="font-bold text-navy cursor-pointer flex justify-between items-center text-sm sm:text-base">
+            Is Plotline authorized to provide investment advice?
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slateCustom mt-3 leading-relaxed border-t border-slate-100 pt-3">
+            No. Plotline is an educational hackathon simulation designed to showcase programmatic financial data extraction and constrained LLM portfolio analysis. It is not regulated by the FCA or any financial authority.
+          </p>
+        </details>
+
+        <details class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 group">
+          <summary class="font-bold text-navy cursor-pointer flex justify-between items-center text-sm sm:text-base">
+            How does the engine prevent AI hallucinations?
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slateCustom mt-3 leading-relaxed border-t border-slate-100 pt-3">
+            All numerical metrics (returns, volatility, drawdown) are computed explicitly in Python code. The LLM is provided a strictly schema-validated JSON format and is forbidden from generating ungrounded statistics. A secondary verification step checks every cited figure against the calculated table.
+          </p>
+        </details>
+
+        <details class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 group">
+          <summary class="font-bold text-navy cursor-pointer flex justify-between items-center text-sm sm:text-base">
+            How is the private architecture venture scored?
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slateCustom mt-3 leading-relaxed border-t border-slate-100 pt-3">
+            The private raise sits in an unlisted venture slot outside the public equity layers. It is evaluated qualitatively as Go, Partial, or No-go based on client risk criteria. If rated "No-go", its allocation drops to 0% and capital is retained in cash or re-allocated to public layers.
+          </p>
+        </details>
+
+        <details class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 group">
+          <summary class="font-bold text-navy cursor-pointer flex justify-between items-center text-sm sm:text-base">
+            How are foreign exchange fluctuations handled?
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slateCustom mt-3 leading-relaxed border-t border-slate-100 pt-3">
+            While the investment pot is denominated in USD ($100,000), UK-listed assets trade in GBP (£). Conversions use daily spot exchange rates. Currency fluctuations contribute to total portfolio volatility.
+          </p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-navy text-cream py-10 border-t border-white/10 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-6 text-xs text-slate-400">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-cream flex items-center justify-center p-0.5">
+          <svg class="w-full h-full" role="img" aria-label="Plotline logo"><use href="#plotline-mark" /></svg>
+        </div>
+        <span class="text-cream font-bold text-base">Plotline</span>
+        <span>· UK Smart-City Allocation Platform</span>
+      </div>
+
+      <div class="text-center sm:text-right space-y-1">
+        <p>Educational Hackathon Project.</p>
+        <p class="text-slate-500"></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic JavaScript -->
+  <script>
+    // Asset Data Model & Sample State (Mirrors engine.py & sample_data.json)
+    const APP_DATA = {
+      pot: 100000,
+      dataAsOf: "October 2026",
+      label: "LIVE SIMULATION",
+      order: ["design", "materials", "energy", "connectivity", "mobility", "water", "property", "arch", "cash"],
+      holdings: {
+        design: {
+          layer: "Urban Design & Simulation",
+          short: "Arup / Bentley Systems (DESIGN.L)",
+          color: "#4BB3A5",
+          isLayer: true,
+          vol: 24.2,
+          confidence: "High",
+          dataPoint: "12-month return 18.4%, 90-day volatility 24.2%, drawdown -12.1%.",
+          risk: "Delay in municipal digital twin infrastructure contract sign-offs.",
+          trigger: "90-day volatility exceeding 32%."
+        },
+        materials: {
+          layer: "Green Materials",
+          short: "CRH Plc / Sustainable Concrete (MATS.L)",
+          color: "#2E8B57",
+          isLayer: true,
+          vol: 29.5,
+          confidence: "Medium",
+          dataPoint: "12-month return 22.1%, 90-day volatility 29.5%, drawdown -18.2%.",
+          risk: "Raw material cost inflation spiking faster than project pricing power.",
+          trigger: "Operating margin contraction over 2 consecutive quarters."
+        },
+        energy: {
+          layer: "Smart Energy & Grid",
+          short: "SSE Plc / Smart Grid (ENERGY.L)",
+          color: "#E9A23B",
+          isLayer: true,
+          vol: 28.4,
+          confidence: "High",
+          dataPoint: "12-month return 14.8%, 90-day volatility 28.4%, drawdown -15.0%.",
+          risk: "Regulatory cap shifts on UK clean energy tariff margins.",
+          trigger: "90-day volatility exceeding 38%."
+        },
+        connectivity: {
+          layer: "IoT & 5G Connectivity",
+          short: "Vodafone / Smart Sensors (CONN.L)",
+          color: "#3182CE",
+          isLayer: true,
+          vol: 22.1,
+          confidence: "High",
+          dataPoint: "12-month return 11.2%, 90-day volatility 22.1%, drawdown -9.8%.",
+          risk: "Spectrum licensing cost spikes or municipal 5G deployment delays.",
+          trigger: "ARPU drop below baseline threshold."
+        },
+        mobility: {
+          layer: "Autonomous Mobility",
+          short: "FirstGroup / EV Transit (MOB.L)",
+          color: "#805AD5",
+          isLayer: true,
+          vol: 34.0,
+          confidence: "Medium",
+          dataPoint: "12-month return 31.0%, 90-day volatility 34.0%, drawdown -24.5%.",
+          risk: "Public subsidy reductions for municipal bus fleet electrification.",
+          trigger: "Regulatory pause on autonomous corridor tests."
+        },
+        water: {
+          layer: "Smart Water Infrastructure",
+          short: "Pennon Group / Water Tech (WATER.L)",
+          color: "#00B5D8",
+          isLayer: true,
+          vol: 19.8,
+          confidence: "High",
+          dataPoint: "12-month return 8.5%, 90-day volatility 19.8%, drawdown -7.2%.",
+          risk: "Environment agency fines or regulatory capital expenditure mandates.",
+          trigger: "Dividend payout ratio exceeding 95%."
+        },
+        property: {
+          layer: "PropTech & Smart Buildings",
+          short: "British Land / Smart Real Estate (PROP.L)",
+          color: "#DD6B20",
+          isLayer: true,
+          vol: 26.8,
+          confidence: "Medium",
+          dataPoint: "12-month return 15.3%, 90-day volatility 26.8%, drawdown -14.1%.",
+          risk: "Higher interest rates dampening commercial valuation yields.",
+          trigger: "Occupancy rate falling below 88%."
+        },
+        arch: {
+          layer: "Extra Slot · Private Venture",
+          short: "Foster+Partners Spin-off (Private)",
+          color: "#D69E2E",
+          isLayer: false,
+          vol: 42.0,
+          confidence: "Medium",
+          dataPoint: "Series A valuation raise, early-stage illiquid asset slot.",
+          risk: "High illiquidity and execution risk in unlisted venture capital.",
+          trigger: "Milestone delay beyond 12 months or governance failure."
+        },
+        cash: {
+          layer: "Buffer",
+          short: "USD Cash Buffer",
+          color: "#A0AEC0",
+          isLayer: false,
+          vol: 0.0,
+          confidence: "High",
+          dataPoint: "Risk-free liquid liquidity buffer in USD.",
+          risk: "Inflation drag on unallocated cash reserves.",
+          trigger: "Cash holding exceeding client ceiling limit."
+        }
+      },
+      scenarios: {
+        base: {
+          label: "Base Case",
+          summary: "Optimal growth allocation balancing exposure across high-performing smart city layers under steady macro conditions.",
+          archScore: "Go",
+          alloc: { design: 14, materials: 12, energy: 15, connectivity: 14, mobility: 12, water: 10, property: 8, arch: 15, cash: 0 },
+          reasons: {}
+        },
+        rates_up: {
+          label: "Rates Shock (+200bps)",
+          summary: "Simulates a sharp 200bps interest rate hike. Capital rotates away from debt-heavy real estate and high-beta mobility into defensive water and cash.",
+          archScore: "Partial",
+          alloc: { design: 14, materials: 10, energy: 15, connectivity: 15, mobility: 8, water: 15, property: 0, arch: 10, cash: 13 },
+          reasons: {
+            property: "Sold to 0%: Commercial yields hit by higher financing costs.",
+            mobility: "Cut from 12% to 8%: Debt-funded fleet expansion faces higher borrowing costs.",
+            water: "Increased to 15%: Defensive cash flows with inflation-linked utility returns.",
+            cash: "Buffer raised to 13%: Cash preserved while interest yields remain elevated."
+          }
+        },
+        infra_cut: {
+          label: "Infra Cut (-15%)",
+          summary: "Simulates a 15% UK public infrastructure spending cut. Reduces exposure to heavy materials and private architecture venture.",
+          archScore: "No-go",
+          alloc: { design: 15, materials: 5, energy: 15, connectivity: 15, mobility: 15, water: 15, property: 10, arch: 0, cash: 10 },
+          reasons: {
+            arch: "Dropped to 0%: Private raise rated No-go due to public sector co-funding cancellations.",
+            materials: "Cut from 12% to 5%: Reduced demand for raw construction concrete and steel.",
+            connectivity: "Increased to 15%: Essential telecom upgrades prioritized over physical builds.",
+            cash: "Retained at 10% to preserve optionality."
+          }
+        }
+      }
+    };
+
+    // Global Interactive State
+    let currentScenarioKey = 'base';
+    let capLimit = 15;
+    let minLayersLimit = 4;
+    let currentArchScore = 'Go';
+    let selectedHoldingKey = null;
+    let heroChartInstance = null;
+    let demoChartInstance = null;
+
+    // Helper formatting functions
+    function usd(val) {
+      return '$' + Math.round(val).toLocaleString();
+    }
+
+    // Initialize Dashboard UI & Events
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      initHeroChart();
+      initDemoControls();
+      renderScenarioTabs();
+      updateDashboard();
+
+      // Run Log Toggle
+      document.getElementById('toggleRunLogBtn').addEventListener('click', () => {
+        const logBox = document.getElementById('runLogContainer');
+        const chevron = document.getElementById('logChevron');
+        logBox.classList.toggle('hidden');
+        chevron.classList.toggle('rotate-180');
+      });
+
+      // Holding Search Input
+      document.getElementById('holdingSearch').addEventListener('input', (e) => {
+        renderHoldingsList(e.target.value.toLowerCase());
+      });
+
+      // Close Holding Modal
+      document.getElementById('closeDetailBtn').addEventListener('click', () => {
+        selectedHoldingKey = null;
+        document.getElementById('holdingDetailCard').classList.add('hidden');
+        updateDemoChart();
+        renderHoldingsList();
+      });
+    });
+
+    // Render Hero Donut Chart
+    function initHeroChart() {
+      const ctx = document.getElementById('heroChart').getContext('2d');
+      const baseAlloc = APP_DATA.scenarios.base.alloc;
+      const ids = APP_DATA.order.filter(id => baseAlloc[id] > 0);
+
+      heroChartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ids.map(id => APP_DATA.holdings[id].short),
+          datasets: [{
+            data: ids.map(id => baseAlloc[id]),
+            backgroundColor: ids.map(id => APP_DATA.holdings[id].color),
+            borderWidth: 2,
+            borderColor: '#FFFFFF',
+            hoverOffset: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '70%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (context) => ` ${context.label}: ${context.raw}% (${usd(APP_DATA.pot * context.raw / 100)})`
+              }
+            }
+          }
+        }
+      });
+
+      // Build Legend
+      const legendContainer = document.getElementById('heroLegend');
+      legendContainer.innerHTML = ids.map(id => `
+        <div class="flex items-center justify-between py-1.5 px-1">
+          <div class="flex items-center gap-2 truncate pr-2">
+            <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background:${APP_DATA.holdings[id].color}"></span>
+            <span class="text-navy font-semibold truncate">${APP_DATA.holdings[id].layer}</span>
+          </div>
+          <span class="font-bold text-navy text-xs">${baseAlloc[id]}%</span>
+        </div>
+      `).join('');
+    }
+
+    // Initialize Interactive Controls
+    function initDemoControls() {
+      const capSlider = document.getElementById('capSlider');
+      const capValText = document.getElementById('capValueText');
+      capSlider.addEventListener('input', (e) => {
+        capLimit = parseInt(e.target.value);
+        capValText.textContent = capLimit + '%';
+        updateDashboard();
+      });
+
+      const layersSlider = document.getElementById('layersSlider');
+      const layersValText = document.getElementById('layersValueText');
+      layersSlider.addEventListener('input', (e) => {
+        minLayersLimit = parseInt(e.target.value);
+        layersValText.textContent = `${minLayersLimit} of 7`;
+        updateDashboard();
+      });
+
+      // Arch Score buttons
+      const archButtons = document.querySelectorAll('#archScoreGroup button');
+      archButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          currentArchScore = e.target.dataset.score;
+          archButtons.forEach(b => {
+            b.className = 'py-1.5 rounded-lg text-center text-slateCustom hover:bg-white/50 transition';
+          });
+          e.target.className = 'py-1.5 rounded-lg text-center transition bg-emerald-600 text-white shadow-sm font-bold';
+          updateDashboard();
+        });
+      });
+
+      // Reset Button
+      document.getElementById('resetParamsBtn').addEventListener('click', () => {
+        capLimit = 15;
+        minLayersLimit = 4;
+        currentArchScore = APP_DATA.scenarios[currentScenarioKey].archScore;
+        capSlider.value = 15;
+        capValText.textContent = '15%';
+        layersSlider.value = 4;
+        layersValText.textContent = '4 of 7';
+
+        archButtons.forEach(b => {
+          if (b.dataset.score === currentArchScore) {
+            b.className = 'py-1.5 rounded-lg text-center transition bg-emerald-600 text-white shadow-sm font-bold';
+          } else {
+            b.className = 'py-1.5 rounded-lg text-center text-slateCustom hover:bg-white/50 transition';
+          }
+        });
+
+        updateDashboard();
+      });
+    }
+
+    // Render Scenario Switcher Tabs
+    function renderScenarioTabs() {
+      const container = document.getElementById('scenarioTabs');
+      container.innerHTML = Object.keys(APP_DATA.scenarios).map(key => {
+        const sc = APP_DATA.scenarios[key];
+        const isActive = key === currentScenarioKey;
+        return `
+          <button data-sc="${key}" class="sc-tab py-2.5 px-4 rounded-xl text-xs font-bold transition flex items-center justify-between ${
+            isActive ? 'bg-navy text-cream shadow-md' : 'bg-cream text-navy hover:bg-slate-200/60'
+          }">
+            <span>${sc.label}</span>
+            <i data-lucide="${isActive ? 'check-circle' : 'circle'}" class="w-3.5 h-3.5"></i>
+          </button>
+        `;
+      }).join('');
+
+      document.querySelectorAll('.sc-tab').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const targetKey = e.currentTarget.dataset.sc;
+          currentScenarioKey = targetKey;
+          currentArchScore = APP_DATA.scenarios[targetKey].archScore;
+
+          // Update arch button highlight
+          document.querySelectorAll('#archScoreGroup button').forEach(b => {
+            if (b.dataset.score === currentArchScore) {
+              b.className = 'py-1.5 rounded-lg text-center transition bg-emerald-600 text-white shadow-sm font-bold';
+            } else {
+              b.className = 'py-1.5 rounded-lg text-center text-slateCustom hover:bg-white/50 transition';
+            }
+          });
+
+          renderScenarioTabs();
+          updateDashboard();
+        });
+      });
+
+      document.getElementById('scenarioDescription').textContent = APP_DATA.scenarios[currentScenarioKey].summary;
+      document.getElementById('mandateScenarioBadge').textContent = APP_DATA.scenarios[currentScenarioKey].label;
+    }
+
+    // Master Update Function
+    function updateDashboard() {
+      const rawAlloc = { ...APP_DATA.scenarios[currentScenarioKey].alloc };
+
+      // Adjust allocation if Arch score is overridden
+      if (currentArchScore === 'No-go' && rawAlloc.arch > 0) {
+        const freed = rawAlloc.arch;
+        rawAlloc.arch = 0;
+        rawAlloc.cash = (rawAlloc.cash || 0) + freed;
+      }
+
+      // Compute Mandate Rules
+      const holdings = APP_DATA.holdings;
+      const layerIds = APP_DATA.order.filter(id => holdings[id].isLayer);
+      const investIds = APP_DATA.order.filter(id => id !== 'cash');
+
+      const coveredLayers = layerIds.filter(id => (rawAlloc[id] || 0) > 0).length;
+      const maxAllocVal = Math.max(...investIds.map(id => rawAlloc[id] || 0));
+      const cashVal = rawAlloc.cash || 0;
+      
+      // Calculate Weighted Volatility
+      let wVol = 0;
+      APP_DATA.order.forEach(id => {
+        wVol += (rawAlloc[id] || 0) * (holdings[id].vol || 0);
+      });
+      wVol = (wVol / 100).toFixed(1);
+
+      const overCapHoldings = investIds.filter(id => (rawAlloc[id] || 0) > capLimit);
+      const passCap = maxAllocVal <= capLimit;
+      const passLayers = coveredLayers >= minLayersLimit;
+      const passCash = cashVal <= 20;
+
+      // Update Mandate Chips Cards
+      const chipsData = [
+        { label: "Goal Target", value: "High Growth", detail: `${100 - cashVal}% invested, ${cashVal}% cash (limit 20%)`, status: passCash ? "pass" : "fail" },
+        { label: "Volatility Cap", value: "High Volatility", detail: `Weighted ${wVol}%`, status: "pass" },
+        { label: "Per Holding Cap", value: `Max ${capLimit}%`, detail: `Largest allocation: ${maxAllocVal}%`, status: passCap ? "pass" : "fail" },
+        { label: "Layer Coverage", value: `Min ${minLayersLimit} of 7`, detail: `${coveredLayers} of 7 covered`, status: passLayers ? "pass" : "fail" }
+      ];
+
+      const passCount = chipsData.filter(c => c.status === "pass").length;
+
+      // Update Banner Metrics
+      const metricMandatePass = document.getElementById('metricMandatePass');
+      const metricMandateSub = document.getElementById('metricMandateSub');
+      const metricMandateIcon = document.getElementById('metricMandateIcon');
+
+      if (passCount === chipsData.length) {
+        metricMandatePass.textContent = `${passCount} of ${chipsData.length} Passed`;
+        metricMandatePass.className = "text-2xl font-bold text-emerald-700 mt-1";
+        metricMandateSub.textContent = "100% Mandate Compliant";
+        metricMandateIcon.className = "w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700";
+        metricMandateIcon.innerHTML = `<i data-lucide="check-circle-2" class="w-6 h-6"></i>`;
+      } else {
+        metricMandatePass.textContent = `${passCount} of ${chipsData.length} Passed`;
+        metricMandatePass.className = "text-2xl font-bold text-red-700 mt-1";
+        metricMandateSub.textContent = `${chipsData.length - passCount} Rule Violation(s)`;
+        metricMandateIcon.className = "w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-700";
+        metricMandateIcon.innerHTML = `<i data-lucide="alert-octagon" class="w-6 h-6"></i>`;
+      }
+
+      document.getElementById('metricVol').textContent = `${wVol}%`;
+
+      // Concentration calculation
+      const top3AllocSum = [...investIds].map(id => rawAlloc[id] || 0).sort((a, b) => b - a).slice(0, 3).reduce((a, b) => a + b, 0);
+      document.getElementById('metricConcentration').textContent = top3AllocSum > 45 ? "High Concentration" : "Balanced Split";
+      document.getElementById('metricConcentrationSub').textContent = `Top 3 Assets = ${top3AllocSum}%`;
+
+      // Render Mandate Chips Grid
+      const chipsContainer = document.getElementById('mandateChipsGrid');
+      chipsContainer.innerHTML = chipsData.map(c => `
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-2">
+          <div class="flex justify-between items-start">
+            <span class="text-xs font-bold text-slateCustom uppercase tracking-wider">${c.label}</span>
+            <span class="badge ${c.status === 'pass' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}">
+              ${c.status === 'pass' ? '✓ Pass' : '✕ Fail'}
+            </span>
+          </div>
+          <div>
+            <div class="text-lg font-bold text-navy">${c.value}</div>
+            <div class="text-xs text-slate-500">${c.detail}</div>
+          </div>
+        </div>
+      `).join('');
+
+      // Refresh Charts & Lists
+      updateDemoChart(rawAlloc);
+      renderHoldingsList(document.getElementById('holdingSearch').value.toLowerCase(), rawAlloc);
+      renderScenarioMovements();
+      
+      if (selectedHoldingKey) {
+        showHoldingDetail(selectedHoldingKey, rawAlloc);
+      }
+
+      lucide.createIcons();
+    }
+
+    // Update Main Demo Interactive Donut Chart
+    function updateDemoChart(allocMap) {
+      if (!allocMap) {
+        allocMap = APP_DATA.scenarios[currentScenarioKey].alloc;
+      }
+
+      const activeIds = APP_DATA.order.filter(id => (allocMap[id] || 0) > 0);
+      const labels = activeIds.map(id => APP_DATA.holdings[id].short);
+      const values = activeIds.map(id => allocMap[id]);
+      const colors = activeIds.map(id => APP_DATA.holdings[id].color);
+
+      const ctx = document.getElementById('demoChart').getContext('2d');
+
+      if (demoChartInstance) {
+        demoChartInstance.destroy();
+      }
+
+      demoChartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: values,
+            backgroundColor: colors,
+            borderWidth: 2,
+            borderColor: '#FFFFFF',
+            hoverOffset: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '68%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (context) => {
+                  const id = activeIds[context.dataIndex];
+                  const percentage = context.raw;
+                  return ` ${APP_DATA.holdings[id].layer}: ${percentage}% (${usd(APP_DATA.pot * percentage / 100)})`;
+                }
+              }
+            }
+          },
+          onClick: (evt, activeElements) => {
+            if (activeElements.length > 0) {
+              const index = activeElements[0].index;
+              const clickedId = activeIds[index];
+              selectedHoldingKey = clickedId;
+              showHoldingDetail(clickedId, allocMap);
+              renderHoldingsList(document.getElementById('holdingSearch').value.toLowerCase(), allocMap);
+            }
+          }
+        }
+      });
+
+      // Update Center Label
+      if (selectedHoldingKey && allocMap[selectedHoldingKey]) {
+        const pct = allocMap[selectedHoldingKey];
+        document.getElementById('donutCenterVal').textContent = `${pct}%`;
+        document.getElementById('donutCenterSub').textContent = APP_DATA.holdings[selectedHoldingKey].short.split('(')[0];
+      } else {
+        document.getElementById('donutCenterVal').textContent = usd(APP_DATA.pot);
+        document.getElementById('donutCenterSub').textContent = `${APP_DATA.scenarios[currentScenarioKey].label}`;
+      }
+    }
+
+    // Render Holdings Table / List
+    function renderHoldingsList(filterQuery = '', allocMap = null) {
+      if (!allocMap) {
+        allocMap = APP_DATA.scenarios[currentScenarioKey].alloc;
+      }
+
+      const container = document.getElementById('holdingsList');
+      const baseAlloc = APP_DATA.scenarios.base.alloc;
+
+      const items = APP_DATA.order.filter(id => {
+        const h = APP_DATA.holdings[id];
+        const matchesSearch = h.layer.toLowerCase().includes(filterQuery) || h.short.toLowerCase().includes(filterQuery);
+        return matchesSearch && ((allocMap[id] || 0) > 0 || (baseAlloc[id] || 0) > 0);
+      });
+
+      document.getElementById('holdingsCountLabel').textContent = `${items.length} Assets`;
+
+      container.innerHTML = items.map(id => {
+        const h = APP_DATA.holdings[id];
+        const pct = allocMap[id] || 0;
+        const basePct = baseAlloc[id] || 0;
+        const diff = pct - basePct;
+        const isSelected = id === selectedHoldingKey;
+        const isOverCap = id !== 'cash' && pct > capLimit;
+
+        let moveBadge = '';
+        if (currentScenarioKey !== 'base' && diff !== 0) {
+          if (pct === 0) moveBadge = `<span class="badge bg-red-100 text-red-800">Sold</span>`;
+          else if (basePct === 0) moveBadge = `<span class="badge bg-emerald-100 text-emerald-800">New</span>`;
+          else moveBadge = `<span class="badge bg-blue-100 text-blue-800">${diff > 0 ? '+' : ''}${diff}%</span>`;
+        }
+
+        let capWarning = isOverCap ? `<span class="badge bg-red-100 text-red-800 ml-1">Over Cap</span>` : '';
+
+        return `
+          <div data-hid="${id}" class="holding-row p-2.5 rounded-xl border transition cursor-pointer flex items-center justify-between gap-2 ${
+            isSelected ? 'bg-amber/10 border-amber shadow-sm' : 'bg-cream/50 border-slate-200/80 hover:bg-white'
+          }">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:${h.color}"></span>
+              <div class="truncate">
+                <div class="text-xs font-bold text-navy truncate flex items-center">
+                  <span>${h.short}</span>
+                  ${capWarning}
+                </div>
+                <div class="text-[10px] text-slateCustom truncate">${h.layer}</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 flex-shrink-0 text-right">
+              ${moveBadge}
+              <div>
+                <div class="text-xs font-bold text-navy">${pct}%</div>
+                <div class="text-[10px] text-slate-500">${usd(APP_DATA.pot * pct / 100)}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Add Click Listener to Rows
+      document.querySelectorAll('.holding-row').forEach(row => {
+        row.addEventListener('click', (e) => {
+          const hid = e.currentTarget.dataset.hid;
+          selectedHoldingKey = hid;
+          showHoldingDetail(hid, allocMap);
+          renderHoldingsList(filterQuery, allocMap);
+          updateDemoChart(allocMap);
+        });
+      });
+    }
+
+    // Display Detailed Inspection Modal / Card
+    function showHoldingDetail(hid, allocMap) {
+      const h = APP_DATA.holdings[hid];
+      const pct = allocMap[hid] || 0;
+      const card = document.getElementById('holdingDetailCard');
+
+      card.classList.remove('hidden');
+      document.getElementById('detailLayer').textContent = h.layer;
+      document.getElementById('detailTitle').textContent = h.short;
+      document.getElementById('detailAllocVal').textContent = `${usd(APP_DATA.pot * pct / 100)} (${pct}%)`;
+      document.getElementById('detailConfidence').textContent = h.confidence;
+      document.getElementById('detailVol').textContent = h.vol > 0 ? `${h.vol}%` : 'N/A';
+
+      document.getElementById('detailDataPoint').textContent = h.dataPoint;
+      document.getElementById('detailRisk').textContent = h.risk;
+      document.getElementById('detailTrigger').textContent = h.trigger;
+
+      // Mandate Rule Text
+      let ruleText = '';
+      if (h.isLayer) {
+        ruleText = `Covers the ${h.layer} layer (counts toward the min ${minLayersLimit} layers constraint). ${pct <= capLimit ? 'Complies with' : 'Exceeds'} the ${capLimit}% per-holding cap limit.`;
+      } else if (hid === 'arch') {
+        ruleText = `Allocated to private venture raise slot. Current score: ${currentArchScore}. ${pct <= capLimit ? 'Complies with' : 'Exceeds'} the ${capLimit}% cap limit.`;
+      } else {
+        ruleText = `Unallocated liquid liquidity buffer. Kept at or below 20% max cash ceiling limit.`;
+      }
+      document.getElementById('detailRule').textContent = ruleText;
+
+      // Scenario specific shift note
+      const scReasons = APP_DATA.scenarios[currentScenarioKey].reasons || {};
+      const note = scReasons[hid] || (currentScenarioKey === 'base' ? 'Base case allocation with zero macro shock applied.' : 'No reallocation required under this scenario.');
+      document.getElementById('detailScenarioNote').textContent = note;
+    }
+
+    // Render Movements Summary Box
+    function renderScenarioMovements() {
+      const box = document.getElementById('scenarioMovesBox');
+      const title = document.getElementById('movesTitle');
+      const content = document.getElementById('movesContent');
+
+      if (currentScenarioKey === 'base') {
+        title.textContent = 'Base Case Allocation Summary';
+        content.innerHTML = `<p class="leading-relaxed">Base case balanced portfolio reflecting optimized long-term risk-reward across all 7 smart city infrastructure layers plus the private architecture venture.</p>`;
+        return;
+      }
+
+      title.textContent = `Capital Shifts under ${APP_DATA.scenarios[currentScenarioKey].label}`;
+      const baseAlloc = APP_DATA.scenarios.base.alloc;
+      const currentAlloc = APP_DATA.scenarios[currentScenarioKey].alloc;
+      const reasons = APP_DATA.scenarios[currentScenarioKey].reasons || {};
+
+      let shiftLines = [];
+      APP_DATA.order.forEach(id => {
+        const diff = (currentAlloc[id] || 0) - (baseAlloc[id] || 0);
+        if (diff !== 0) {
+          const name = APP_DATA.holdings[id].short;
+          const reasonText = reasons[id] || 'Rebalanced to satisfy mandate rules.';
+          shiftLines.push(`
+            <div class="bg-navyDark/80 p-2.5 rounded-xl border border-white/10">
+              <span class="font-bold text-amber">${name}:</span>
+              <span class="text-slate-200">${reasonText}</span>
+            </div>
+          `);
+        }
+      });
+
+      content.innerHTML = shiftLines.join('') || `<p>No structural re-allocations made.</p>`;
+    }
+  </script>
+</body>
+</html>
