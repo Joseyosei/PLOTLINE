@@ -6,7 +6,7 @@ Plotline allocates a portfolio across 7 smart-city layers plus a private archite
 
 ## Live demo
 
-**https://joseyosei.github.io/plotline/** (GitHub Pages)
+**https://joseyosei.github.io/PLOTLINE/** (GitHub Pages)
 
 ## Features
 
